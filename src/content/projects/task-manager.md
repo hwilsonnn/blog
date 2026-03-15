@@ -7,8 +7,6 @@ github: "https://github.com/yourname/task-manager"
 demo: ""
 ---
 
-# Full-Stack Task Manager
-
 A full-stack task management app inspired by Linear and Notion.
 
 ## Tech Stack

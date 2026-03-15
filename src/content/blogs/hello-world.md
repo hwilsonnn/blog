@@ -5,8 +5,6 @@ tags: ["personal", "introduction"]
 excerpt: "Welcome to my blog! Here's why I decided to start writing and what you can expect."
 ---
 
-# Hello World: Starting My Blog
-
 Welcome! I've been wanting to start a blog for years, and today I'm finally doing it.
 
 ## Why Start a Blog?

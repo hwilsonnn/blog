@@ -5,8 +5,6 @@ tags: ["react", "javascript", "patterns"]
 excerpt: "After years of React development, these five patterns have had the biggest impact on my code quality."
 ---
 
-# 5 React Patterns That Changed How I Code
-
 React is flexible — sometimes too flexible. Here are five patterns I keep returning to.
 
 ## 1. Compound Components

@@ -7,8 +7,6 @@ github: "https://github.com/yourname/weather-app"
 demo: "https://weather.yourname.dev"
 ---
 
-# Real-Time Weather Dashboard
-
 A weather dashboard that shows current conditions, hourly forecasts, and a 7-day outlook.
 
 ## Tech Stack

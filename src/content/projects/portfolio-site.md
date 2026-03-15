@@ -7,8 +7,6 @@ github: "https://github.com/yourname/blog"
 demo: "https://yourname.github.io/blog"
 ---
 
-# Personal Portfolio & Blog
-
 This very site! A personal blog and portfolio built with modern web technologies.
 
 ## Tech Stack

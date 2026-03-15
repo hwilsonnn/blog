@@ -5,8 +5,6 @@ tags: ["tailwind", "css", "dark-mode"]
 excerpt: "A complete guide to adding a beautiful dark mode to your Tailwind CSS project."
 ---
 
-# Implementing Dark Mode with Tailwind CSS
-
 Dark mode is no longer optional. Here's how to do it right with Tailwind.
 
 ## Setup
