@@ -8,7 +8,7 @@ interface NavLink {
   label: string;
 }
 
-const navLinks: NavLink[] = [
+const navLinks: Array<NavLink> = [
   { to: '/', label: 'Home' },
   { to: '/blog', label: 'Blog' },
   { to: '/projects', label: 'Projects' },

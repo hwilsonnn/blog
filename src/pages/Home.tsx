@@ -2,23 +2,23 @@ import { motion, type Variants, type TargetAndTransition } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { getAllBlogs } from '../utils/markdown';
 
-const container: Variants = {
+const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: { staggerChildren: 0.1, delayChildren: 0.2 },
   },
-};
+} satisfies Variants;
 
-const item: Variants = {
+const item = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
+} satisfies Variants;
 
-const float: TargetAndTransition = {
+const float = {
   y: [0, -10, 0],
   transition: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
-};
+} satisfies TargetAndTransition;
 
 export default function Home() {
   const recentBlogs = getAllBlogs().slice(0, 3);
