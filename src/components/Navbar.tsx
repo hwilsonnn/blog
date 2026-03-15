@@ -3,14 +3,24 @@ import { motion } from 'framer-motion';
 import { SunIcon, MoonIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 
-const navLinks = [
+interface NavLink {
+  to: string;
+  label: string;
+}
+
+const navLinks: NavLink[] = [
   { to: '/', label: 'Home' },
   { to: '/blog', label: 'Blog' },
   { to: '/projects', label: 'Projects' },
   { to: '/about', label: 'About' },
 ];
 
-export default function Navbar({ theme, toggleTheme }) {
+interface NavbarProps {
+  theme: string;
+  toggleTheme: () => void;
+}
+
+export default function Navbar({ theme, toggleTheme }: NavbarProps) {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
