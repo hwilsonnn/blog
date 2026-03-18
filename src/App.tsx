@@ -13,6 +13,7 @@ import ProjectPost from "./pages/ProjectPost"
 import About from "./pages/About"
 import NotFound from "./pages/NotFound"
 import { useTheme } from "./hooks/useTheme"
+import BackToTopButton from "./components/BackToTopButton"
 
 interface AppLayoutProps {
   theme: string
@@ -22,6 +23,8 @@ interface AppLayoutProps {
 function AppLayout({ theme, toggleTheme }: AppLayoutProps) {
   const location = useLocation()
   const showNavbar = location.pathname !== "/"
+  const isBlogRoute =
+    location.pathname === "/blog" || location.pathname.startsWith("/blog/")
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -40,6 +43,7 @@ function AppLayout({ theme, toggleTheme }: AppLayoutProps) {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
+      <BackToTopButton enabled={isBlogRoute} />
     </div>
   )
 }
