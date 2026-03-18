@@ -28,7 +28,10 @@ function AppLayout({ theme, toggleTheme }: AppLayoutProps) {
       {showNavbar && <Navbar theme={theme} toggleTheme={toggleTheme} />}
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={<Home theme={theme} toggleTheme={toggleTheme} />}
+          />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/projects" element={<Projects />} />

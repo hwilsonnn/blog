@@ -1,6 +1,13 @@
 import { motion, type Variants } from "framer-motion"
 import { Link } from "react-router-dom"
 
+type Theme = "light" | "dark"
+
+interface HomeProps {
+  theme: Theme
+  toggleTheme: () => void
+}
+
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -14,14 +21,33 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
 } satisfies Variants
 
-export default function Home() {
+export default function Home({ theme, toggleTheme }: HomeProps) {
   return (
-    <div className="min-h-screen px-4 flex items-center justify-center">
+    <div className="relative min-h-screen px-4 flex items-center justify-center overflow-hidden">
+      <motion.button
+        type="button"
+        onClick={toggleTheme}
+        key={theme}
+        initial={{ opacity: 0, scale: 0.72 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
+        className="absolute -top-56 -left-44 sm:-top-64 sm:-left-52 select-none z-20 focus:outline-none"
+        aria-label="Toggle theme"
+      >
+        <motion.span
+          animate={{ rotate: 360 }}
+          transition={{ duration: 32, ease: "linear", repeat: Infinity }}
+          className="block text-[26rem] sm:text-[32rem] leading-none"
+        >
+          {theme === "dark" ? "🌑" : "☀️"}
+        </motion.span>
+      </motion.button>
+
       <motion.section
         variants={container}
         initial="hidden"
         animate="show"
-        className="w-full max-w-md text-center"
+        className="w-full max-w-md text-center relative z-10"
       >
         <motion.h1
           variants={item}
