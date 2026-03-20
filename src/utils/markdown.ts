@@ -39,7 +39,7 @@ export interface Post {
  * Browser-compatible YAML frontmatter parser.
  * Supports strings (quoted or unquoted), inline arrays, and empty values.
  */
-function parseFrontmatter(raw: string): { data: Frontmatter; content: string } {
+export function parseFrontmatter(raw: string): { data: Frontmatter; content: string } {
   const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/)
   if (!match) return { data: {}, content: raw.trim() }
 
