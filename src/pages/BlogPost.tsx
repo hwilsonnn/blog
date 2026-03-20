@@ -1,4 +1,4 @@
-import { useParams, Link, Navigate } from "react-router-dom"
+import { useParams, Navigate, useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
@@ -42,6 +42,7 @@ interface ArticleContentProps {
 }
 
 function ArticleContent({ post, articleRef }: ArticleContentProps) {
+  const navigate = useNavigate()
   if (!post) return null
 
   return (
@@ -51,12 +52,13 @@ function ArticleContent({ post, articleRef }: ArticleContentProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Link
-          to="/blog"
+        <button
+          type="button"
+          onClick={() => navigate(-1)}
           className="inline-flex items-center gap-1 text-sm text-indigo-600 dark:text-indigo-400 hover:underline mb-8"
         >
           ← Back to Blog
-        </Link>
+        </button>
 
         <div className="flex flex-wrap gap-2 mb-4">
           {post.frontmatter.tags?.map((tag) => (
