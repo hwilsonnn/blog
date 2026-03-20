@@ -9,6 +9,12 @@
   body {
     @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300;
   }
+  article h1,
+  article h2,
+  article h3,
+  article h4 {
+    scroll-margin-top: 100px;
+  }
 }
 
 @layer components {
