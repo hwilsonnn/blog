@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, type RefObject } from "react"
 import { motion } from "framer-motion"
 
 interface TOCItem {
@@ -8,7 +8,14 @@ interface TOCItem {
 }
 
 interface TableOfContentsProps {
-  articleRef?: React.RefObject<HTMLElement>
+  articleRef?: RefObject<HTMLElement | null>
+}
+
+// Hoist regex outside component to avoid re-creation in loops (js-hoist-regexp)
+const HEADING_ID_RE = /[^a-z0-9]/gi
+
+function textToId(text: string): string {
+  return text.replaceAll(HEADING_ID_RE, "").toLowerCase()
 }
 
 export default function TableOfContents({ articleRef }: TableOfContentsProps) {
@@ -16,8 +23,8 @@ export default function TableOfContents({ articleRef }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>("")
   const tocRef = useRef<HTMLDivElement>(null)
 
+  // Scan headings and assign IDs once
   useEffect(() => {
-    // Scan the article element for headings after a short delay to ensure rendering is complete
     const timer = setTimeout(() => {
       const target = articleRef?.current || document.querySelector("article")
       if (!target) return
@@ -29,7 +36,7 @@ export default function TableOfContents({ articleRef }: TableOfContentsProps) {
         const text = heading.textContent || ""
         if (!text) return
 
-        const id = text.replaceAll(/[^a-z0-9]/gi, "").toLowerCase()
+        const id = textToId(text)
         heading.id = id
 
         tocItems.push({
@@ -45,6 +52,7 @@ export default function TableOfContents({ articleRef }: TableOfContentsProps) {
     return () => clearTimeout(timer)
   }, [articleRef])
 
+  // Observe headings for active state — reuses IDs already assigned above
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -60,12 +68,7 @@ export default function TableOfContents({ articleRef }: TableOfContentsProps) {
     const headings = document.querySelectorAll(
       "article h1, article h2, article h3, article h4",
     )
-    headings.forEach((heading) => {
-      const text = heading.textContent || ""
-      const id = text.replaceAll(/[^a-z0-9]/gi, "").toLowerCase()
-      heading.id = id
-      observer.observe(heading)
-    })
+    headings.forEach((heading) => observer.observe(heading))
 
     return () => observer.disconnect()
   }, [items])

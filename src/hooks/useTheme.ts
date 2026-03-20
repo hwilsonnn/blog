@@ -8,8 +8,12 @@ export function useTheme(): {
   toggleTheme: () => void
 } {
   const [theme, setTheme] = useState<Theme>(() => {
-    const saved = localStorage.getItem("theme")
-    if (saved === "dark" || saved === "light") return saved
+    try {
+      const saved = localStorage.getItem("theme")
+      if (saved === "dark" || saved === "light") return saved
+    } catch {
+      /* localStorage unavailable (private browsing, disabled) */
+    }
     return window.matchMedia("(prefers-color-scheme: dark)").matches
       ? "dark"
       : "light"
@@ -22,7 +26,11 @@ export function useTheme(): {
     } else {
       root.classList.remove("dark")
     }
-    localStorage.setItem("theme", theme)
+    try {
+      localStorage.setItem("theme", theme)
+    } catch {
+      /* localStorage unavailable */
+    }
   }, [theme])
 
   const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"))

@@ -17,7 +17,7 @@ export default function BlogPost() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-16">
-      {isKnowledgeShare && (
+      {isKnowledgeShare ? (
         <div className="flex flex-col lg:grid lg:grid-cols-5 gap-12 lg:items-start">
           <div className="hidden lg:block lg:col-span-1 self-stretch">
             <TableOfContents articleRef={articleRef} />
@@ -27,8 +27,7 @@ export default function BlogPost() {
             <ArticleContent post={post} articleRef={articleRef} />
           </div>
         </div>
-      )}
-      {!isKnowledgeShare && (
+      ) : (
         <div className="flex justify-center">
           <ArticleContent post={post} articleRef={articleRef} />
         </div>
@@ -39,7 +38,7 @@ export default function BlogPost() {
 
 interface ArticleContentProps {
   post: ReturnType<typeof getBlogBySlug>
-  articleRef: React.RefObject<HTMLElement>
+  articleRef: React.RefObject<HTMLElement | null>
 }
 
 function ArticleContent({ post, articleRef }: ArticleContentProps) {
