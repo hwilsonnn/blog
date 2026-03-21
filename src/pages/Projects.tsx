@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { getAllProjects } from '../utils/markdown';
+import { Link } from "react-router-dom"
+import { motion } from "framer-motion"
+import { getAllProjects } from "../utils/markdown"
 
 export default function Projects() {
-  const projects = getAllProjects();
+  const projects = getAllProjects()
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-16">
@@ -31,8 +31,11 @@ export default function Projects() {
               className="flex flex-col p-6 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-indigo-500 dark:hover:border-indigo-500 transition-all hover:shadow-lg hover:-translate-y-1 h-full group"
             >
               <div className="flex flex-wrap gap-2 mb-3">
-                {project.frontmatter.tags?.map(tag => (
-                  <span key={tag} className="text-xs px-2 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full">
+                {project.frontmatter.tags?.map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-xs px-2 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full"
+                  >
                     {tag}
                   </span>
                 ))}
@@ -45,10 +48,14 @@ export default function Projects() {
               </p>
               <div className="mt-4 flex gap-3">
                 {project.frontmatter.github && (
-                  <span className="text-xs text-indigo-600 dark:text-indigo-400 font-medium">GitHub →</span>
+                  <span className="text-xs text-indigo-600 dark:text-indigo-400 font-medium">
+                    GitHub →
+                  </span>
                 )}
                 {project.frontmatter.demo && (
-                  <span className="text-xs text-purple-600 dark:text-purple-400 font-medium">Live Demo →</span>
+                  <span className="text-xs text-purple-600 dark:text-purple-400 font-medium">
+                    Live Demo →
+                  </span>
                 )}
               </div>
             </Link>
@@ -56,5 +63,5 @@ export default function Projects() {
         ))}
       </div>
     </div>
-  );
+  )
 }

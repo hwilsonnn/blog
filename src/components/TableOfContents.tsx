@@ -42,7 +42,7 @@ export default function TableOfContents({ articleRef }: TableOfContentsProps) {
         tocItems.push({
           id,
           text,
-          level: parseInt(heading.tagName[1]),
+          level: parseInt(heading.tagName[1])
         })
       })
 
@@ -62,11 +62,11 @@ export default function TableOfContents({ articleRef }: TableOfContentsProps) {
           }
         })
       },
-      { rootMargin: "-64px 0px -66% 0px" },
+      { rootMargin: "-64px 0px -66% 0px" }
     )
 
     const headings = document.querySelectorAll(
-      "article h1, article h2, article h3, article h4",
+      "article h1, article h2, article h3, article h4"
     )
     headings.forEach((heading) => observer.observe(heading))
 

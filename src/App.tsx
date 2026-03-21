@@ -2,7 +2,7 @@ import {
   HashRouter as Router,
   Routes,
   Route,
-  useLocation,
+  useLocation
 } from "react-router-dom"
 import Navbar from "./components/Navbar"
 import Home from "./pages/Home"

@@ -6,7 +6,7 @@ export default function Blog() {
   const allBlogs = getAllBlogs()
   const allTags = [
     "All",
-    ...new Set(allBlogs.flatMap((b) => b.frontmatter.tags || [])),
+    ...new Set(allBlogs.flatMap((b) => b.frontmatter.tags || []))
   ]
   const [searchParams, setSearchParams] = useSearchParams()
   const activeTag = searchParams.get("tag") || "All"
@@ -96,7 +96,7 @@ export default function Blog() {
                   new Date(blog.frontmatter.date).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "short",
-                    day: "numeric",
+                    day: "numeric"
                   })}
               </div>
             </Link>

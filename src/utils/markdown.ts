@@ -2,17 +2,17 @@
 const blogFiles = import.meta.glob("../content/blogs/*.md", {
   query: "?raw",
   import: "default",
-  eager: true,
+  eager: true
 })
 const projectFiles = import.meta.glob("../content/projects/*.md", {
   query: "?raw",
   import: "default",
-  eager: true,
+  eager: true
 })
 const aboutFile = import.meta.glob("../content/about.md", {
   query: "?raw",
   import: "default",
-  eager: true,
+  eager: true
 })
 
 export interface Frontmatter {
@@ -39,7 +39,10 @@ export interface Post {
  * Browser-compatible YAML frontmatter parser.
  * Supports strings (quoted or unquoted), inline arrays, and empty values.
  */
-export function parseFrontmatter(raw: string): { data: Frontmatter; content: string } {
+export function parseFrontmatter(raw: string): {
+  data: Frontmatter
+  content: string
+} {
   const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/)
   if (!match) return { data: {}, content: raw.trim() }
 

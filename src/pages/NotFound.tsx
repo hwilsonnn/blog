@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { Link } from "react-router-dom"
+import { motion } from "framer-motion"
 
 export default function NotFound() {
   return (
@@ -9,8 +9,12 @@ export default function NotFound() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="text-8xl font-bold text-gray-200 dark:text-gray-700 mb-4">404</div>
-        <h1 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Page Not Found</h1>
+        <div className="text-8xl font-bold text-gray-200 dark:text-gray-700 mb-4">
+          404
+        </div>
+        <h1 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">
+          Page Not Found
+        </h1>
         <p className="text-gray-500 dark:text-gray-400 mb-8">
           Looks like this page doesn't exist yet.
         </p>
@@ -22,5 +26,5 @@ export default function NotFound() {
         </Link>
       </motion.div>
     </div>
-  );
+  )
 }

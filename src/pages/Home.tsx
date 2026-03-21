@@ -12,13 +12,13 @@ const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-  },
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 }
+  }
 } satisfies Variants
 
 const item = {
   hidden: { opacity: 0, y: 14 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } }
 } satisfies Variants
 
 export default function Home({ theme, toggleTheme }: HomeProps) {

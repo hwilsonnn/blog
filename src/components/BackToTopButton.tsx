@@ -3,7 +3,7 @@ interface BackToTopButtonProps {
 }
 
 export default function BackToTopButton({
-  enabled = true,
+  enabled = true
 }: BackToTopButtonProps) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })

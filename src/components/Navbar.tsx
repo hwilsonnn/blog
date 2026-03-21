@@ -4,7 +4,7 @@ import {
   SunIcon,
   MoonIcon,
   Bars3Icon,
-  XMarkIcon,
+  XMarkIcon
 } from "@heroicons/react/24/outline"
 import { useState } from "react"
 
@@ -17,7 +17,7 @@ const navLinks: Array<NavLink> = [
   { to: "/", label: "Home" },
   { to: "/blog", label: "Blog" },
   { to: "/projects", label: "Projects" },
-  { to: "/about", label: "About" },
+  { to: "/about", label: "About" }
 ]
 
 interface NavbarProps {

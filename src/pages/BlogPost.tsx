@@ -2,7 +2,7 @@ import { useParams, Navigate, useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
-import { useRef } from "react"
+import { RefObject, useRef } from "react"
 import { getBlogBySlug } from "../utils/markdown"
 import TableOfContents from "../components/TableOfContents"
 
@@ -38,7 +38,7 @@ export default function BlogPost() {
 
 interface ArticleContentProps {
   post: ReturnType<typeof getBlogBySlug>
-  articleRef: React.RefObject<HTMLElement | null>
+  articleRef: RefObject<HTMLElement | null>
 }
 
 function ArticleContent({ post, articleRef }: ArticleContentProps) {
@@ -80,7 +80,7 @@ function ArticleContent({ post, articleRef }: ArticleContentProps) {
             {new Date(post.frontmatter.date).toLocaleDateString("en-US", {
               year: "numeric",
               month: "long",
-              day: "numeric",
+              day: "numeric"
             })}
           </p>
         )}
