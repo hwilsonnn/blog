@@ -1,14 +1,14 @@
-import { useParams, Link, Navigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { getProjectBySlug } from '../utils/markdown';
+import { useParams, Link, Navigate } from "react-router-dom"
+import { motion } from "framer-motion"
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
+import { getProjectBySlug } from "../utils/markdown"
 
 export default function ProjectPost() {
-  const { slug } = useParams();
-  const project = getProjectBySlug(slug);
+  const { slug } = useParams()
+  const project = getProjectBySlug(slug)
 
-  if (!project) return <Navigate to="/projects" replace />;
+  if (!project) return <Navigate to="/projects" replace />
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-16">
@@ -25,8 +25,11 @@ export default function ProjectPost() {
         </Link>
 
         <div className="flex flex-wrap gap-2 mb-4">
-          {project.frontmatter.tags?.map(tag => (
-            <span key={tag} className="text-xs px-2 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full">
+          {project.frontmatter.tags?.map((tag) => (
+            <span
+              key={tag}
+              className="text-xs px-2 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full"
+            >
               {tag}
             </span>
           ))}
@@ -66,5 +69,5 @@ export default function ProjectPost() {
         </article>
       </motion.div>
     </div>
-  );
+  )
 }

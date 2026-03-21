@@ -24,7 +24,9 @@ function AppLayout({ theme, toggleTheme }: AppLayoutProps) {
   const location = useLocation()
   const showNavbar = location.pathname !== "/"
   const isBlogRoute =
-    location.pathname === "/blog" || location.pathname.startsWith("/blog/")
+    location.pathname === "/blog" ||
+    location.pathname.startsWith("/blog/") ||
+    location.pathname === "/about"
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
