@@ -3,8 +3,8 @@ title: "Personal Portfolio & Blog"
 date: "2024-01-01"
 tags: ["react", "tailwind", "vite"]
 excerpt: "The site you're reading right now — built with React, Tailwind CSS, and Vite."
-github: "https://github.com/yourname/blog"
-demo: "https://yourname.github.io/blog"
+github: "https://github.com/hwilsonnn/blog"
+demo: "https://hwilsonnn.github.io"
 ---
 
 This very site! A personal blog and portfolio built with modern web technologies.
