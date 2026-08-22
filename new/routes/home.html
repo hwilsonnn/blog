@@ -1,0 +1,37 @@
+<style>
+  .home {
+    display: flex;
+    height: 100dvh;
+    width: 100dvw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .nav-items {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
+
+<section class="home">
+  <h1>Welcome</h1>
+  <h3>A simple site of notes, projects, and a little about me</h3>
+
+  <div class="nav-items">
+    <a href="articles">Articles</a>
+    <a href="projects">Projects</a>
+    <a href="about">About</a>
+  </div>
+</section>
+
+<script>
+  const handleAnchorClick = (ev) => {
+    window.event.preventDefault()
+    history.replaceState({}, "", ev.target.href)
+  }
+
+  document.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", handleAnchorClick)
+  })
+</script>

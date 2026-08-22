@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="hwilson.dev — Full Stack Developer blog and portfolio"
+    />
+    <title>hwilson.dev</title>
+    <!-- <script type="module" crossorigin src="./assets/index-DPkRwoni.js"></script> -->
+    <link rel="stylesheet" crossorigin href="./index.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap");
+    </style>
+  </head>
+  <body>
+    <main id="root"></main>
+
+    <script id="root-script">
+      const initialLocation = window.location.pathname.replace("/blog", "")
+      const routeMap = {
+        "/": "./routes/home.html",
+        "/articles": "./routes/articles/index.html"
+      }
+
+      const injectRouteContent = (routeText) => {
+        const parser = new DOMParser()
+        const parsedDom = parser.parseFromString(routeText, "text/html")
+        const routeScript = parsedDom.querySelector("script")
+        const routeMain = parsedDom.querySelector("main")
+
+        document.querySelector("main#root").innerHTML = routeText
+
+        if (routeScript) {
+          const newScriptElement = document.createElement("script")
+          newScriptElement.innerHTML = routeScript.innerHTML
+          const replaceableScript =
+            document.getElementById("replaceable-script")
+          replaceableScript.parentNode.replaceChild(
+            newScriptElement,
+            replaceableScript
+          )
+          newScriptElement.id = "replaceable-script"
+        }
+      }
+
+      const fetchAndLoadContent = (path) => {
+        fetch(path).then((resp) =>
+          resp.text().then((pathContent) => injectRouteContent(pathContent))
+        )
+      }
+
+      window.navigation.addEventListener("navigate", (navigate) => {
+        console.log("popstate", navigate)
+        const dest = new URL(navigate.destination.url)
+
+        const parsedDest = dest.pathname.replace("/blog", "")
+        console.log("want to load ", parsedDest)
+        if (routeMap?.[parsedDest]) {
+          fetchAndLoadContent(routeMap[parsedDest])
+        }
+      })
+
+      if (initialLocation === "/") {
+        fetchAndLoadContent(routeMap[initialLocation])
+      }
+    </script>
+
+    <script id="replaceable-script">
+      console.log("ghello")
+    </script>
+  </body>
+</html>

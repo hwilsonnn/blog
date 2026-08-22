@@ -1,0 +1,93 @@
+<style>
+  .articles {
+    display: flex;
+    height: 100dvh;
+    width: 100dvw;
+    flex-direction: column;
+  }
+
+  .cards {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  article {
+    display: flex;
+    max-height: 100px;
+    gap: 15px;
+
+    img {
+      object-fit: contain;
+      max-width: 100px;
+    }
+
+    a {
+      font-size: 1.5rem;
+      font-weight: bold;
+      padding-bottom: 8px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      padding-top: 8px;
+
+      span {
+        border: 1px solid aliceblue;
+        padding: 2px;
+      }
+    }
+  }
+</style>
+
+<nav>
+  <a href="/">
+    <img src="./assets/home.gif" />
+  </a>
+</nav>
+
+<section class="articles">
+  <h1>Articles</h1>
+  <h3>x posts about web development, tools, and lessons learned.</h3>
+
+  <div class="cards">
+    <article>
+      <img src="./assets/dunking.gif" />
+      <div>
+        <a href="some-article">Some article title</a>
+        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+        <div class="tags">
+          <span>javascript</span>
+          <span>apis</span>
+          <span>tidbit</span>
+        </div>
+      </div>
+    </article>
+
+    <article>
+      <img src="./assets/breakdance.gif" />
+      <div>
+        <a href="some-article">Some breakdown</a>
+        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+        <div class="tags">
+          <span>javascript</span>
+          <span>apis</span>
+          <span>tidbit</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<script>
+  const handleAnchorClick = (ev) => {
+    window.event.preventDefault()
+    history.replaceState({}, "", ev.target.href)
+  }
+
+  document.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", handleAnchorClick)
+  })
+</script>
