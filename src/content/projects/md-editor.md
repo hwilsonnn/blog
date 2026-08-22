@@ -4,7 +4,7 @@ date: "2024-10-18"
 tags: ["typescript", "markdown", "editor"]
 excerpt: "A lightweight markdown editor for quick note-taking with editing and preview workflows."
 github: "https://github.com/hwilsonnn/md-editor"
-demo: ""
+demo: "https://hwilsonnn.github.io/md-editor"
 ---
 
 A simple markdown editor built for quick note-taking and document drafting.
