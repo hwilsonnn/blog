@@ -1,34 +1,68 @@
 <style>
   .home {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 3rem 1rem 4rem;
+    text-align: center;
+    /* Fill the viewport and center the content */
+    min-height: 100dvh;
     display: flex;
-    height: 100dvh;
-    width: 100dvw;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    justify-content: center;
   }
 
+  /* Simple bordered nav buttons */
   .nav-items {
     display: flex;
     flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    margin-top: 32px;
+  }
+  .nav-items a {
+    display: block;
+    width: 200px;
+    padding: 6px 0;
+    text-decoration: none;
+    color: #ffffff;
+    background: #000080;
+    border: 2px outset #c0c0c0;
+  }
+  .nav-items a:visited {
+    color: #ffffff;
+  }
+  .nav-items a:hover {
+    background: #0000cd;
+    border-style: inset;
+  }
+
+  .footnote {
+    font-size: 0.75rem;
+    color: #707070;
+    margin-top: 16px;
   }
 </style>
 
 <section class="home">
-  <h1>Welcome</h1>
+  <h1>Welcome to my homepage</h1>
   <h3>A simple site of notes, projects, and a little about me</h3>
 
   <div class="nav-items">
     <a href="articles">Articles</a>
     <a href="projects">Projects</a>
-    <a href="about">About</a>
+    <a href="about">About Me</a>
   </div>
+
+  <hr />
+
+  <p class="footnote">Best viewed in 800x600</p>
 </section>
 
 <script>
   const handleAnchorClick = (ev) => {
-    window.event.preventDefault()
-    history.replaceState({}, "", ev.target.href)
+    ev.preventDefault()
+    history.pushState({}, "", ev.target.href)
+    window.dispatchEvent(new PopStateEvent("popstate"))
   }
 
   document.querySelectorAll("a").forEach((a) => {

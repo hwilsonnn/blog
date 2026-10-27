@@ -10,28 +10,57 @@
   margin: 0;
 }
 
-/* 3. Enable keyword animations */
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    interpolate-size: allow-keywords;
-  }
-}
-
 body {
-  /* 4. Increase line-height */
+  /* 3. Increase line-height */
   line-height: 1.5;
-  /* 5. Improve text rendering */
-  -webkit-font-smoothing: antialiased;
-  font-family: "Cormorant Garamond", serif;
-  background-color: #002433;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 17px;
+  color: #ffffff;
+
+  /* Very faint starfield texture */
+  background-color: #000018;
+  background-image:
+    radial-gradient(circle at 22px 34px, rgba(255, 255, 255, 0.35) 1px, transparent 1.5px),
+    radial-gradient(circle at 70px 14px, rgba(255, 255, 255, 0.25) 1px, transparent 1.5px),
+    radial-gradient(circle at 118px 52px, rgba(255, 255, 210, 0.3) 1px, transparent 1.5px),
+    radial-gradient(circle at 48px 96px, rgba(255, 255, 255, 0.2) 1px, transparent 1.5px),
+    radial-gradient(circle at 146px 110px, rgba(200, 220, 255, 0.25) 1px, transparent 1.5px);
+  background-size: 190px 150px;
 }
 
-body,
+/* Classic link colors, quiet on dark */
 a {
-  color: aliceblue;
+  color: #7fdfff;
+}
+a:visited {
+  color: #b89bd6;
+}
+a:hover {
+  color: #fff59b;
 }
 
-/* 6. Improve media defaults */
+/* Bold serif headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* Classic inset bevel divider */
+hr {
+  border: none;
+  height: 0;
+  width: 80%;
+  margin: 24px auto;
+  border-top: 2px inset #808080;
+}
+
+/* 4. Improve media defaults */
 img,
 picture,
 video,
@@ -41,7 +70,7 @@ svg {
   max-width: 100%;
 }
 
-/* 7. Inherit fonts for form controls */
+/* 5. Inherit fonts for form controls */
 input,
 button,
 textarea,
@@ -49,7 +78,7 @@ select {
   font: inherit;
 }
 
-/* 8. Avoid text overflows */
+/* 6. Avoid text overflows */
 p,
 h1,
 h2,
@@ -60,23 +89,21 @@ h6 {
   overflow-wrap: break-word;
 }
 
-/* 9. Improve line wrapping */
+/* 7. Improve line wrapping */
 p {
   text-wrap: pretty;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  text-wrap: balance;
-}
 
-/*
-  10. Create a root stacking context
-*/
+/* 8. Create a root stacking context */
 #root,
 #__next {
   isolation: isolate;
+}
+
+/* 9. Win98-style bevel helpers */
+.bevel-out {
+  border: 2px outset #c0c0c0;
+}
+.bevel-in {
+  border: 2px inset #c0c0c0;
 }

@@ -11,18 +11,26 @@
     <title>hwilson.dev</title>
     <!-- <script type="module" crossorigin src="./assets/index-DPkRwoni.js"></script> -->
     <link rel="stylesheet" crossorigin href="./index.css" />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap");
-    </style>
+    <link rel="prefetch" href="./routes/home.html" />
+    <link rel="prefetch" href="./routes/articles/index.html" />
   </head>
   <body>
     <main id="root"></main>
 
     <script id="root-script">
-      const initialLocation = window.location.pathname.replace("/blog", "")
+      // Deployed under /blog on GitHub Pages, or at the site root
+      const BASE_PATH = window.location.pathname.startsWith("/blog")
+        ? "/blog"
+        : ""
       const routeMap = {
         "/": "./routes/home.html",
-        "/articles": "./routes/articles/index.html"
+        "/articles": "./routes/articles/index.html",
+      }
+
+      // "/blog/articles/" -> "/articles", "/blog/" -> "/"
+      const normalizePath = (path) => {
+        const stripped = path.replace(BASE_PATH, "").replace(/\/+$/, "")
+        return stripped === "" ? "/" : stripped
       }
 
       const injectRouteContent = (routeText) => {
@@ -36,8 +44,7 @@
         if (routeScript) {
           const newScriptElement = document.createElement("script")
           newScriptElement.innerHTML = routeScript.innerHTML
-          const replaceableScript =
-            document.getElementById("replaceable-script")
+          const replaceableScript = document.getElementById("replaceable-script")
           replaceableScript.parentNode.replaceChild(
             newScriptElement,
             replaceableScript
@@ -52,20 +59,33 @@
         )
       }
 
-      window.navigation.addEventListener("navigate", (navigate) => {
-        console.log("popstate", navigate)
-        const dest = new URL(navigate.destination.url)
-
-        const parsedDest = dest.pathname.replace("/blog", "")
-        console.log("want to load ", parsedDest)
-        if (routeMap?.[parsedDest]) {
-          fetchAndLoadContent(routeMap[parsedDest])
-        }
-      })
-
-      if (initialLocation === "/") {
-        fetchAndLoadContent(routeMap[initialLocation])
+      const showNotFound = () => {
+        document.querySelector("main#root").innerHTML = `
+          <section class="not-found">
+            <h1>404 &mdash; Page Not Found</h1>
+            <p><a href="${BASE_PATH}/">Click here to go back home</a></p>
+          </section>`
       }
+
+      const loadRoute = () => {
+        const target = normalizePath(window.location.pathname)
+        if (routeMap[target]) {
+          fetchAndLoadContent(routeMap[target])
+        } else {
+          showNotFound()
+        }
+      }
+
+      // Covers: initial load, the 404.html bounce, back/forward,
+      // and link clicks (route scripts pushState, then dispatch popstate)
+      window.addEventListener("popstate", loadRoute)
+
+      // Arrived via 404.html? Restore the clean URL, then load the route.
+      const bouncedPath = new URLSearchParams(window.location.search).get("p")
+      if (bouncedPath) {
+        history.replaceState({}, "", BASE_PATH + normalizePath(bouncedPath))
+      }
+      loadRoute()
     </script>
 
     <script id="replaceable-script">
