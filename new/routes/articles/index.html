@@ -12,13 +12,6 @@
   /* The navy box stretches to fill remaining height */
   .page-box {
     flex: 1;
-    background: #000080;
-    border: 2px outset #c0c0c0;
-    padding: 24px;
-  }
-
-  nav img {
-    width: 48px;
   }
 
   .cards {
@@ -52,15 +45,6 @@
     margin-top: 8px;
   }
 
-  .tags span {
-    font-family: "Courier New", Courier, monospace;
-    font-size: 0.7rem;
-    padding: 1px 6px;
-    color: #c0c0c0;
-    background: #000;
-    border: 1px inset #808080;
-  }
-
   .footnote {
     font-size: 0.75rem;
     color: #707070;
@@ -70,7 +54,7 @@
 </style>
 
 <nav>
-  <a href="/"><img src="./assets/home.gif" alt="Back to home" /></a>
+  <a href="../"><img src="../assets/home.gif" alt="Back to home" /></a>
 </nav>
 
 <section class="articles">
@@ -80,7 +64,7 @@
 
     <div class="cards">
       <article>
-        <img src="./assets/dunking.gif" />
+        <img src="../assets/dunking.gif" />
         <div>
           <a href="some-article">Some article title</a>
           <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
@@ -93,9 +77,9 @@
       </article>
 
       <article>
-        <img src="./assets/breakdance.gif" />
+        <img src="../assets/breakdance.gif" />
         <div>
-          <a href="some-article">Some breakdown</a>
+          <a href="some-breakdown">Some breakdown</a>
           <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
           <div class="tags">
             <span>javascript</span>
@@ -111,15 +95,3 @@
     &copy; 2001&ndash;2026 hwilson.dev &mdash; hand-coded in Notepad
   </p>
 </section>
-
-<script>
-  const handleAnchorClick = (ev) => {
-    ev.preventDefault()
-    history.pushState({}, "", ev.target.href)
-    window.dispatchEvent(new PopStateEvent("popstate"))
-  }
-
-  document.querySelectorAll("a").forEach((a) => {
-    a.addEventListener("click", handleAnchorClick)
-  })
-</script>

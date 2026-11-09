@@ -1,0 +1,74 @@
+<style>
+  .article {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 1rem 1rem 4rem;
+    /* Fill the viewport */
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .article .page-box {
+    flex: 1;
+  }
+
+  .article-body {
+    max-width: 65ch;
+    margin: 0 auto;
+  }
+
+  .meta {
+    text-align: center;
+    color: #b0b0b0;
+    font-size: 0.9rem;
+    margin: 8px 0 24px;
+  }
+
+  .meta .tags {
+    justify-content: center;
+  }
+</style>
+
+<nav>
+  <a href="../"><img src="../assets/home.gif" alt="Back to home" /></a>
+</nav>
+
+<section class="article">
+  <div class="page-box">
+    <p class="back-link"><a href="./">&laquo; Back to Articles</a></p>
+
+    <h1>Some article title</h1>
+    <p class="meta">
+      Posted 24 Nov 2024
+      <span class="tags">
+        <span>javascript</span>
+        <span>apis</span>
+        <span>tidbit</span>
+      </span>
+    </p>
+
+    <div class="article-body">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. This is the
+        article template &mdash; copy this file, rename it, and edit the
+        content.
+      </p>
+
+      <h2>A section heading</h2>
+      <p>Regular paragraphs with margins, because the reset strips them.</p>
+
+      <ul>
+        <li>Lists work</li>
+        <li>
+          With <code>inline code</code> and
+          <a href="https://example.com">links</a>
+        </li>
+      </ul>
+
+      <pre><code>function preformatted() {
+  code blocks too
+}</code></pre>
+    </div>
+  </div>
+</section>

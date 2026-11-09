@@ -48,24 +48,12 @@
   <h3>A simple site of notes, projects, and a little about me</h3>
 
   <div class="nav-items">
-    <a href="articles">Articles</a>
-    <a href="projects">Projects</a>
-    <a href="about">About Me</a>
+    <a href="articles/">Articles</a>
+    <a href="projects/">Projects</a>
+    <a href="about/">About Me</a>
   </div>
 
   <hr />
 
   <p class="footnote">Best viewed in 800x600</p>
 </section>
-
-<script>
-  const handleAnchorClick = (ev) => {
-    ev.preventDefault()
-    history.pushState({}, "", ev.target.href)
-    window.dispatchEvent(new PopStateEvent("popstate"))
-  }
-
-  document.querySelectorAll("a").forEach((a) => {
-    a.addEventListener("click", handleAnchorClick)
-  })
-</script>

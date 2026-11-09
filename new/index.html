@@ -9,7 +9,6 @@
       content="hwilson.dev — Full Stack Developer blog and portfolio"
     />
     <title>hwilson.dev</title>
-    <!-- <script type="module" crossorigin src="./assets/index-DPkRwoni.js"></script> -->
     <link rel="stylesheet" crossorigin href="./index.css" />
     <link rel="prefetch" href="./routes/home.html" />
     <link rel="prefetch" href="./routes/articles/index.html" />
@@ -22,9 +21,21 @@
       const BASE_PATH = window.location.pathname.startsWith("/blog")
         ? "/blog"
         : ""
+
+      // The shell's own address — route fetches always resolve against
+      // THIS, so they stay correct no matter what path we've pushed since
+      const SHELL_URL = new URL(window.location.href)
+
       const routeMap = {
         "/": "./routes/home.html",
         "/articles": "./routes/articles/index.html",
+      }
+
+      // Pattern fallback: any other path is assumed to be a real file,
+      // e.g. /articles/some-article -> /routes/articles/some-article.html.
+      // New articles need no router changes — just drop the file in.
+      const routeFileFor = (target) => {
+        return routeMap[target] || "./routes" + target + ".html"
       }
 
       // "/blog/articles/" -> "/articles", "/blog/" -> "/"
@@ -33,34 +44,10 @@
         return stripped === "" ? "/" : stripped
       }
 
-      const injectRouteContent = (routeText) => {
-        const parser = new DOMParser()
-        const parsedDom = parser.parseFromString(routeText, "text/html")
-        const routeScript = parsedDom.querySelector("script")
-        const routeMain = parsedDom.querySelector("main")
-
-        document.querySelector("main#root").innerHTML = routeText
-
-        if (routeScript) {
-          const newScriptElement = document.createElement("script")
-          newScriptElement.innerHTML = routeScript.innerHTML
-          const replaceableScript = document.getElementById("replaceable-script")
-          replaceableScript.parentNode.replaceChild(
-            newScriptElement,
-            replaceableScript
-          )
-          newScriptElement.id = "replaceable-script"
-        }
-      }
-
-      const fetchAndLoadContent = (path) => {
-        fetch(path).then((resp) =>
-          resp.text().then((pathContent) => injectRouteContent(pathContent))
-        )
-      }
+      const rootEl = () => document.querySelector("main#root")
 
       const showNotFound = () => {
-        document.querySelector("main#root").innerHTML = `
+        rootEl().innerHTML = `
           <section class="not-found">
             <h1>404 &mdash; Page Not Found</h1>
             <p><a href="${BASE_PATH}/">Click here to go back home</a></p>
@@ -69,27 +56,49 @@
 
       const loadRoute = () => {
         const target = normalizePath(window.location.pathname)
-        if (routeMap[target]) {
-          fetchAndLoadContent(routeMap[target])
-        } else {
-          showNotFound()
-        }
+        const file = new URL(routeFileFor(target), SHELL_URL).href
+        fetch(file).then((resp) => {
+          if (!resp.ok) {
+            showNotFound()
+            return
+          }
+          resp.text().then((html) => {
+            rootEl().innerHTML = html
+          })
+        })
       }
 
-      // Covers: initial load, the 404.html bounce, back/forward,
-      // and link clicks (route scripts pushState, then dispatch popstate)
+      // One delegated listener handles every internal link in every
+      // route — route files carry no JavaScript of their own
+      document.addEventListener("click", (ev) => {
+        const el = ev.target instanceof Element ? ev.target : null
+        const link = el ? el.closest("a") : null
+        if (!link) return
+        const rawHref = link.getAttribute("href")
+        if (!rawHref) return
+
+        // Resolve explicitly against the current URL
+        const url = new URL(rawHref, window.location.href)
+        if (url.origin !== window.location.origin) return // external links behave normally
+
+        ev.preventDefault()
+        history.pushState({}, "", url.pathname + url.search)
+        loadRoute()
+      })
+
+      // Back/forward buttons
       window.addEventListener("popstate", loadRoute)
 
       // Arrived via 404.html? Restore the clean URL, then load the route.
+      // Directory routes keep a trailing slash so relative links inside
+      // them resolve correctly (e.g. /articles/ + "some-article")
       const bouncedPath = new URLSearchParams(window.location.search).get("p")
       if (bouncedPath) {
-        history.replaceState({}, "", BASE_PATH + normalizePath(bouncedPath))
+        const clean = normalizePath(bouncedPath)
+        const restored = routeMap[clean] && clean !== "/" ? clean + "/" : clean
+        history.replaceState({}, "", BASE_PATH + restored)
       }
       loadRoute()
-    </script>
-
-    <script id="replaceable-script">
-      console.log("ghello")
     </script>
   </body>
 </html>
