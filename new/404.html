@@ -1,53 +1,23 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>404 &mdash; hwilson.dev</title>
-    <style>
-      body {
-        font-family: "Times New Roman", Times, serif;
-        color: #ffffff;
-        background-color: #000018;
-        display: flex;
-        min-height: 100dvh;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
-      h1 {
-        font-weight: bold;
-      }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — hwilson.dev</title>
+    <link rel="stylesheet" href="{{base}}/index.css" />
   </head>
   <body>
-    <section>
-      <h1>404 &mdash; Page Not Found</h1>
+    <section class="not-found">
+      <h1>404 — Page Not Found</h1>
       <p>The page you're looking for doesn't exist.</p>
-      <p><a id="home-link" href="/">Click here to go back home</a></p>
+      <p><a href="{{base}}/">Click here to go back home</a></p>
     </section>
-
     <script>
-      // GitHub Pages SPA redirect trick, with a loop guard.
-      //
-      // If this page loads WITHOUT a ?p= param: bounce to the shell
-      // with the original path so it can render the route.
-      //
-      // If it loads WITH ?p= already set, the bounce target itself
-      // didn't resolve to the shell — redirecting again would loop
-      // forever, so we stop and show this static 404 instead.
-      var alreadyBounced = new URLSearchParams(
-        window.location.search
-      ).get("p")
-
-      // Deployed under /blog on GitHub Pages, or at the site root
-      var base = window.location.pathname.startsWith("/blog") ? "/blog" : ""
-
-      document.getElementById("home-link").href = base + "/"
-
-      if (alreadyBounced === null) {
-        window.location.replace(
-          base + "/?p=" + encodeURIComponent(window.location.pathname)
-        )
+      // Static hosts serve this for deep links. Return to the SPA shell,
+      // preserving the route, query, and anchor. Never bounce a missing shell.
+      const base = "{{base}}"
+      if (location.pathname !== base + "/" && location.pathname !== base + "/index.html") {
+        location.replace(base + "/?p=" + encodeURIComponent(location.pathname + location.search + location.hash))
       }
     </script>
   </body>
