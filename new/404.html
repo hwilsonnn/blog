@@ -1,0 +1,24 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — hwilson.dev</title>
+    <link rel="stylesheet" href="{{base}}/index.css" />
+  </head>
+  <body>
+    <section class="not-found">
+      <h1>404 — Page Not Found</h1>
+      <p>The page you're looking for doesn't exist.</p>
+      <p><a href="{{base}}/">Click here to go back home</a></p>
+    </section>
+    <script>
+      // Static hosts serve this for deep links. Return to the SPA shell,
+      // preserving the route, query, and anchor. Never bounce a missing shell.
+      const base = "{{base}}"
+      if (location.pathname !== base + "/" && location.pathname !== base + "/index.html") {
+        location.replace(base + "/?p=" + encodeURIComponent(location.pathname + location.search + location.hash))
+      }
+    </script>
+  </body>
+</html>
