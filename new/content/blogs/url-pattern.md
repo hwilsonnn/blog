@@ -1,6 +1,6 @@
 ---
 title: "URL Pattern API"
-gif: "breakdance.gif"
+gif: "skeleton.gif"
 date: "2025-10-27"
 tags: ["tidbit", "javascript", "apis"]
 excerpt: "Baseline URLPattern API tidbit"

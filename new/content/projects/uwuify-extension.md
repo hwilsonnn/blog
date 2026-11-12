@@ -1,6 +1,6 @@
 ---
 title: "UwUify Browser Extension"
-gif: "dunking.gif"
+gif: "fish.gif"
 date: "2026-03-15"
 tags: ["javascript", "browser-extension", "chrome"]
 excerpt: "A playful browser extension that transforms visible page text into UwU style with configurable intensity modes."

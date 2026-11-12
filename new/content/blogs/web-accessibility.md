@@ -1,6 +1,6 @@
 ---
 title: "Web Accessibility"
-gif: "breakdance.gif"
+gif: "dunking.gif"
 date: "2025-01-21"
 tags: ["knowledge share", "javascript"]
 excerpt: "What is web accessiblity and how do we build accessibility into what we do"

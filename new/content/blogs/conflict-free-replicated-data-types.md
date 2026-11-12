@@ -1,6 +1,6 @@
 ---
 title: "Conflict Free Replicated Data Types (CRDTs)"
-gif: "dunking.gif"
+gif: "computer.gif"
 date: "2025-08-25"
 tags: ["knowledge share"]
 excerpt: "A wild and conceptual article about data conflict resolution"

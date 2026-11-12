@@ -1,6 +1,6 @@
 ---
 title: "History of Javascript"
-gif: "dunking.gif"
+gif: "clock.gif"
 date: "2024-11-24"
 tags: ["knowledge share", "javascript"]
 excerpt: "Why talk about history?"

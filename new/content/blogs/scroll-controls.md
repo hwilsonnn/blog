@@ -1,6 +1,6 @@
 ---
 title: "Scroll Animations"
-gif: "breakdance.gif"
+gif: "toaster.gif"
 date: "2025-09-29"
 tags: ["tidbit", "css"]
 excerpt: "Sharing the differences between 'scroll state' and 'scroll driven' animations"

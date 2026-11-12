@@ -1,6 +1,6 @@
 ---
 title: "Automatic Semicolon Insertion"
-gif: "breakdance.gif"
+gif: "magnifyingGlass.gif"
 date: "2024-09-09"
 tags: ["tidbit", "javscript"]
 excerpt: "ASI and why Javascript doesn't (necessarily) need semicolons"

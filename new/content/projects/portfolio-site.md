@@ -1,6 +1,6 @@
 ---
 title: "Personal Portfolio & Blog"
-gif: "dunking.gif"
+gif: "star.gif"
 date: "2024-01-01"
 tags: ["react", "tailwind", "vite"]
 excerpt: "The site you're reading right now — built with React, Tailwind CSS, and Vite."

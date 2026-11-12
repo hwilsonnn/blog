@@ -1,6 +1,6 @@
 ---
 title: "WebAssembly"
-gif: "dunking.gif"
+gif: "stormCloud.gif"
 date: "2025-02-18"
 tags: ["knowledge share", "javascript", "wasm"]
 excerpt: "Why use Web Assembly"
